@@ -180,7 +180,7 @@ body {
 
 .item-image img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 10px 10px 0 0;
     transition: transform 0.5s ease;
 
@@ -412,38 +412,32 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .slogan-section {
-        padding: 20px 10px;
+@media (max-width: 500px){
+    
+    .category h2 {
+        font-size: 20px;
     }
 
-    .slogan h1 {
-        font-size: 32px;
+    .category-icons {
+        gap: 12px;
     }
 
-    .slogan p {
-        font-size: 16px;
-    }
+    .category-icons svg {
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
-    .category-icons div {
-        width: 100%;
-        max-width: none;
-    }
+.category-icons div {
+    padding: 1px;
+    width: 30px;
+    height: 60px;
+    font-size: 16px;
+}
 
-    .featured-items {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 16px;
-    }
+.features-section h2{
+    font-size: 20px;
+}
 
-    .item {
-        max-width: 100%;
-    }
-
-    .icons {
-        gap: 16px;
-    }
-
-    .icon div {
-        margin: 0 0 16px 0;
-    }
 }
