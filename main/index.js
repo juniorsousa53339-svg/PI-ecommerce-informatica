@@ -13,17 +13,17 @@ function marcarLinkAtivo(nomePagina) {
 }
 
 function refreshAuthUI() {
-    atualizarAreaLogin("admin-status", "/PI-ecommerce-informatica/login/login.html", "conteudo-principal");
+    atualizarAreaLogin("admin-status", "../login/login.html", "conteudo-principal");
 }
 
 function setMainIframePage(nomePagina) {
     if (nomePagina === "produtos") {
-        iframe.src = "/PI-ecommerce-informatica/produtos/produtos.html";
+        iframe.src = "../produtos/produtos.html";
         marcarLinkAtivo("produtos");
     } else if (nomePagina === "login") {
-        iframe.src = "/PI-ecommerce-informatica/login/login.html";
+        iframe.src = "../login/login.html";
     } else {
-        iframe.src = "/PI-ecommerce-informatica/home/home.html";
+        iframe.src = "../home/home.html";
         marcarLinkAtivo("home");
     }
 
