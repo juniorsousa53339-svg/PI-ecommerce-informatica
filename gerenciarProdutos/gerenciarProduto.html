@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Gerenciar Produtos</title>
+    <link rel="stylesheet" href="gerenciarProduto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="../index.html?page=home" class="logo">
+            <i class="fa-solid fa-microchip"></i> TechStore
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html?page=home">Início</a>
+            <a href="../index.html?page=produtos">Produtos</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="admin-info" id="admin-status"></div>
+            <div class="cart-icon">
+                <a href="../carrinho/carrinho.html" title="Ir para o Carrinho">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="crud-header">
+            <h1>Gerenciar Produtos</h1>
+            <button class="btn-primary" onclick="abrirModalForm()">
+                <i class="fa-solid fa-plus"></i> Novo Produto
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table class="crud-table">
+                <thead>
+                    <tr>
+                        <th>Imagem</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaProdutos"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <div id="modalForm" class="modal-overlay">
+        <div class="modal-content form-layout">
+            <div class="modal-left">
+                <img id="imgPreview" src="" alt="Preview do Produto">
+            </div>
+            <div class="modal-right">
+                <h2 id="modalTitle">Novo Produto</h2>
+
+                <input type="hidden" id="produtoId">
+                <input type="hidden" id="produtoImgUrl">
+
+                <div class="input-group">
+                    <label>Nome do Produto</label>
+                    <input type="text" id="produtoNome" placeholder="Ex: Monitor Gamer...">
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo / Categoria</label>
+                    <select id="produtoTipo" onchange="atualizarImagemPreview()">
+                        <option value="Computadores">Computadores</option>
+                        <option value="Notebooks">Notebooks</option>
+                        <option value="Monitores">Monitores</option>
+                        <option value="Periféricos">Periféricos</option>
+                        <option value="Componentes">Componentes</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Preço (R$)</label>
+                    <input type="number" id="produtoPreco" step="0.01" placeholder="0.00">
+                </div>
+
+                <div class="input-group">
+                    <label>Descrição</label>
+                    <textarea id="produtoDesc" rows="4" placeholder="Detalhes do produto..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-secondary" onclick="fecharModais()">Cancelar</button>
+                    <button class="btn-primary" onclick="salvarProduto()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalDelete" class="modal-overlay">
+        <div class="modal-content delete-layout">
+            <div class="delete-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h2>Excluir Produto</h2>
+            <p>Tem certeza que deseja excluir este produto? Esta ação não pode ser desfeita.</p>
+            <div class="modal-actions center">
+                <button class="btn-secondary" onclick="fecharModais()">Cancelar</button>
+                <button class="btn-danger" onclick="confirmarExclusao()">Confimar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../auth.js"></script>
+    <script src="gerenciarProduto.js"></script>
+</body>
+</html>

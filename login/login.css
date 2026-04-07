@@ -137,3 +137,15 @@ button:hover {
 .link-registro a:hover {
     text-decoration: underline;
 }
+
+.mensagem-login {
+    min-height: 24px;
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #dbeafe;
+}
+
+.mensagem-login.admin-success {
+    color: #93c5fd;
+}
