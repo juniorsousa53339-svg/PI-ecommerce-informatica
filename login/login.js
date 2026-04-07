@@ -17,15 +17,24 @@ form.addEventListener("submit", function (event) {
     if (usuario.admin) {
         mensagem.textContent = "Login de administrador realizado.";
         mensagem.classList.add("admin-success");
+        setTimeout(() => {
+            if (window.parent !== window) {
+                window.parent.refreshAuthUI();
+                window.parent.setMainIframePage("gerenciarProdutos");
+            } else {
+                window.location.href = "../gerenciarProdutos/gerenciarProduto.html";
+            }
+        }, 1000);
     } else {
         mensagem.textContent = "Login realizado com sucesso.";
         mensagem.classList.remove("admin-success");
-    }
-
-    if (window.parent !== window) {
-        window.parent.refreshAuthUI();
-        window.parent.setMainIframePage("produtos");
-    } else {
-        window.location.href = "../produtos/produtos.html";
+        setTimeout(() => {
+            if (window.parent !== window) {
+                window.parent.refreshAuthUI();
+                window.parent.setMainIframePage("produtos");
+            } else {
+                window.location.href = "../produtos/produtos.html";
+            }
+        }, 1000);
     }
 });

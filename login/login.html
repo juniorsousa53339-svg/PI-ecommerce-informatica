@@ -16,14 +16,14 @@
 
     <div class="formulario">
         <h1>Login</h1>
-        <form action="#">
+        <form action="#" id="loginForm">
             <div class="caixa-formulario">
-                <input type="text" name="username" placeholder="  Nome de usuário" required>
+                <input type="text" id="username" name="username" placeholder="  Nome de usuário" required>
                 <i class='bx bxs-user'></i>
             </div>
 
             <div class="caixa-formulario">
-                <input type="password" name="password" placeholder="  Senha" required>
+                <input type="password" id="password" name="password" placeholder="  Senha" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
@@ -37,9 +37,11 @@
             <div class="link-registro">
                 <p>Não tem conta? <a href="#"> Cadastre-se</a></p>
             </div>
+            <div id="loginMessage" style="margin-top: 15px; text-align: center; font-weight: bold;"></div>
         </form>
     </div>
     <script src="../main/auth.js"></script>
+    <script src="login.js"></script>
 </body>
 
 </html>
