@@ -1,20 +1,5 @@
 let produtos = [
-    {
-        id: 1,
-        nome: "PC Gamer RTX 4070",
-        tipo: "Computadores",
-        descricao: "PC Gamer de alta performance com RTX 4070 para jogos em 4K.",
-        preco: 8999.99,
-        imagem: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        id: 2,
-        nome: "Notebook Dell XPS 15",
-        tipo: "Notebooks",
-        descricao: "Notebook premium para profissionais criativos com tela 4K.",
-        preco: 12499.99,
-        imagem: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-    }
+   
 ];
 
 let bancoImagens = {

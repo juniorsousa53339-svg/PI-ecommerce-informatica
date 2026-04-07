@@ -67,4 +67,11 @@ function atualizarAreaLogin(idArea, linkLogin, target) {
 
 function logoutSimples() {
     sair();
+    if (window.parent !== window) {
+        window.parent.refreshAuthUI();
+        window.parent.setMainIframePage("home");
+    } else {
+        refreshAuthUI();
+        window.location.href = "../main/index.html";
+    }
 }
