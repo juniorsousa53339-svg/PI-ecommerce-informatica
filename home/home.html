@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TechStore</title>
     <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 
@@ -18,7 +19,9 @@
                 preços do mercado.
             </p>
             <div class="slogan-buttons">
+                <a href="../produtos/produtos.html">
                 <button id="sl-b1"><b>Ver Produtos</b></button>
+                </a>
                 <button id="sl-b2"><b>Saiba Mais</b></button>
             </div>
         </div>
@@ -72,12 +75,14 @@
         <div class="features">
             <div class="features-title">
                 <h2>Produtos em Destaque</h2>
+                <a href="../produtos/produtos.html">
                 <button>Ver Todos</button>
+                </a>
             </div>
             <div class="featured-items">
                 <div class="item">
                     <div class="item-image">
-                        <img src="https://images.unsplash.com/photo-1648241776507-7e3ae32698e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBkZXNrdG9wJTIwY29tcHV0ZXIlMjBSR0J8ZW58MXx8fHwxNzc0Mzk4OTk1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                        <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
                             alt="">
                     </div>
                     <div class="item-description">
@@ -102,7 +107,7 @@
                         <h3>Notebook Aura Ultra 15</h3>
                         <p>Notebook premium para profissionais criativos com tela 4K e performance excepcional.</p>
                         <div>
-                            <span>R$ 9.999,99</span>
+                            <span>R$ 12.499,99</span>
                             <button>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                                     <path
@@ -230,31 +235,35 @@
             </div>
         </div>
     </section>
-    <footer class="footer">
-        <div class="footer-links">
-            <div>
-                <h3>Store</h3>
-                <p>Sua loja especializada em computadores e<br>periféricos de alta qualidade.</p>
+    <footer class="products-footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>TechStore</h3>
+                <p>Sua loja especializada em computadores e periféricos de alta qualidade.</p>
             </div>
-            <div>
-                <h3>Links Rápidos</h3>
-                <p>Produtos</p>
-                <p>Sobre Nós</p>
-                <p>Contato</p>
-            </div>
-            <div>
-                <h3>Contato</h3>
-            </div>
-            <div>
-                <h3>Redes Sociais</h3>
-            </div>
-        </div>
-        <div class="footer-end">
-            <hr>
-            <p>© 2026. Todos os direitos reservados.</p>
-        </div>
 
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <a href="../produtos/produtos.html">Produtos</a>
+                <a href="#">Sobre Nós</a>
+                <a href="#footer-column">Contato</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <p><i class="fa-solid fa-phone"></i> (11) 9999-9999</p>
+                <p><i class="fa-regular fa-envelope"></i> contato@techstore.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> São Paulo, SP</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
 </body>
-
-</html>

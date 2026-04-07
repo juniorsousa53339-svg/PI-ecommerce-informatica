@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="png" href="../home/assets/logo-branca.PNG">
+    <link rel="shortcut icon" href="../home/assets/logo-branca.PNG" type="image/x-icon">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="../home/assets/logo-branca.PNG" alt="logo"> TechStore
+        </div>
+
+        <nav class="nav-links">
+            <a href="/PI-ecommerce-informatica/home/home.html" target="conteudo-principal" data-page="home" class="active">Início</a>
+            <a href="/PI-ecommerce-informatica/produtos/produtos.html" target="conteudo-principal" data-page="produtos">Produtos</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="admin-info" id="admin-status"></div>
+
+            <div class="cart-icon">
+                <a href="/PI-ecommerce-informatica/carrinho/carrinho.html" target="_top" title="Ir para o Carrinho">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <iframe name="conteudo-principal" id="conteudo-principal" src="/PI-ecommerce-informatica/home/home.html"></iframe>
+
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
