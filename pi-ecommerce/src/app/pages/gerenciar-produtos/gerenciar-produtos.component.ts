@@ -13,9 +13,10 @@ import { ProdutoService } from '../../core/services/produto.service';
 export class GerenciarProdutosComponent implements OnInit {
 
   listaProdutos: Produto[] = [];
-  produto: Produto = {} as Produto;
+  produto: Produto = this.criarProdutoVazio();
   produtoId?: number;
   modoEdicao = false;
+  termoBusca = '';
 
   constructor(private service: ProdutoService) {}
 
@@ -27,6 +28,33 @@ export class GerenciarProdutosComponent implements OnInit {
     this.service.listar().subscribe((produtos) => {
       this.listaProdutos = produtos;
     });
+  }
+
+  get produtosFiltrados(): Produto[] {
+    const termo = this.termoBusca.trim().toLowerCase();
+
+    if (!termo) {
+      return this.listaProdutos;
+    }
+
+    return this.listaProdutos.filter((produto) =>
+      [produto.nome, produto.marca, produto.categoria, produto.modelo, produto.status]
+        .some((valor) => valor?.toLowerCase().includes(termo))
+    );
+  }
+
+  get totalEstoque(): number {
+    return this.listaProdutos.reduce((total, produto) => total + Number(produto.estoque || 0), 0);
+  }
+
+  get valorEstoque(): number {
+    return this.listaProdutos.reduce((total, produto) => {
+      return total + Number(produto.preco || 0) * Number(produto.estoque || 0);
+    }, 0);
+  }
+
+  get totalBaixoEstoque(): number {
+    return this.listaProdutos.filter((produto) => Number(produto.estoque || 0) <= 5).length;
   }
 
   editar(id: number): void {
@@ -47,6 +75,7 @@ export class GerenciarProdutosComponent implements OnInit {
 
   submeter(): void {
     if (this.modoEdicao && this.produtoId) {
+      this.produto.id = this.produtoId;
       this.service.editar(this.produto).subscribe(() => {
         this.limpar();
         this.carregarProdutos();
@@ -60,8 +89,21 @@ export class GerenciarProdutosComponent implements OnInit {
   }
 
   limpar(): void {
-    this.produto = {} as Produto;
+    this.produto = this.criarProdutoVazio();
     this.produtoId = undefined;
     this.modoEdicao = false;
+  }
+
+  private criarProdutoVazio(): Produto {
+    return {
+      nome: '',
+      marca: '',
+      categoria: '',
+      modelo: '',
+      preco: 0,
+      estoque: 0,
+      status: 'Disponivel',
+      descricao: ''
+    };
   }
 }
