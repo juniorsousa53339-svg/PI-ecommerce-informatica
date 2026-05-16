@@ -1,0 +1,37 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Notebook Dell Inspiron 15",
+      "marca": "Dell",
+      "categoria": "Notebooks",
+      "modelo": "Inspiron 15",
+      "preco": 3499.90,
+      "estoque": 12,
+      "status": "Disponivel",
+      "descricao": "Processador Intel Core i5, 8GB RAM, 512GB SSD"
+    },
+    {
+      "id": 2,
+      "nome": "Mouse Gamer RGB",
+      "marca": "Redragon",
+      "categoria": "Perifericos",
+      "modelo": "M602",
+      "preco": 149.90,
+      "estoque": 35,
+      "status": "Disponivel",
+      "descricao": "Mouse gamer com iluminacao RGB e 7200 DPI"
+    },
+    {
+      "id": 3,
+      "nome": "SSD 1TB NVMe",
+      "marca": "Kingston",
+      "categoria": "Componentes",
+      "modelo": "NV2",
+      "preco": 429.90,
+      "estoque": 4,
+      "status": "Baixo estoque",
+      "descricao": "SSD NVMe PCIe 4.0, leitura ate 3500 MB/s"
+    }
+  ]
+}

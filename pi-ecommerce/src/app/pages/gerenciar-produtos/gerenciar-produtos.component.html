@@ -5,12 +5,12 @@
       <h1>Gerenciamento de Produtos</h1>
       <p>Interface front-end para cadastro e listagem de produtos de informatica.</p>
     </div>
-    <button class="btn btn-novo" type="button">Novo Produto</button>
+    <button class="btn btn-novo" type="button" (click)="limpar()">Novo Produto</button>
   </header>
 
   <section class="formulario-container" aria-labelledby="titulo-formulario">
     <div class="formulario-header">
-      <h2 id="titulo-formulario">Cadastro de Produto</h2>
+      <h2 id="titulo-formulario">{{ modoEdicao ? 'Editar Produto' : 'Cadastro de Produto' }}</h2>
       <p>Preencha os dados principais do produto.</p>
     </div>
 
@@ -18,19 +18,19 @@
       <div class="form-row">
         <div class="form-group">
           <label for="nome">Nome do produto *</label>
-          <input type="text" id="nome" placeholder="Ex: Notebook Dell Inspiron">
+          <input type="text" id="nome" name="nome" placeholder="Ex: Notebook Dell Inspiron" [(ngModel)]="produto.nome">
         </div>
 
         <div class="form-group">
           <label for="marca">Marca *</label>
-          <input type="text" id="marca" placeholder="Ex: Dell">
+          <input type="text" id="marca" name="marca" placeholder="Ex: Dell" [(ngModel)]="produto.marca">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="categoria">Categoria *</label>
-          <select id="categoria">
+          <select id="categoria" name="categoria" [(ngModel)]="produto.categoria">
             <option value="">Selecione uma categoria</option>
             <option>Notebooks</option>
             <option>Computadores</option>
@@ -43,24 +43,24 @@
 
         <div class="form-group">
           <label for="modelo">Modelo</label>
-          <input type="text" id="modelo" placeholder="Ex: Inspiron 15">
+          <input type="text" id="modelo" name="modelo" placeholder="Ex: Inspiron 15" [(ngModel)]="produto.modelo">
         </div>
       </div>
 
       <div class="form-row form-row-three">
         <div class="form-group">
           <label for="preco">Preco (R$) *</label>
-          <input type="number" id="preco" placeholder="3499.90">
+          <input type="number" id="preco" name="preco" placeholder="3499.90" [(ngModel)]="produto.preco">
         </div>
 
         <div class="form-group">
           <label for="estoque">Estoque *</label>
-          <input type="number" id="estoque" placeholder="12">
+          <input type="number" id="estoque" name="estoque" placeholder="12" [(ngModel)]="produto.estoque">
         </div>
 
         <div class="form-group">
           <label for="status">Status</label>
-          <select id="status">
+          <select id="status" name="status" [(ngModel)]="produto.status">
             <option>Disponivel</option>
             <option>Baixo estoque</option>
             <option>Indisponivel</option>
@@ -70,12 +70,12 @@
 
       <div class="form-group">
         <label for="descricao">Descricao</label>
-        <textarea id="descricao" rows="4" placeholder="Informe caracteristicas como processador, memoria, armazenamento e garantia."></textarea>
+        <textarea id="descricao" name="descricao" rows="4" placeholder="Informe caracteristicas como processador, memoria, armazenamento e garantia." [(ngModel)]="produto.descricao"></textarea>
       </div>
 
       <div class="form-actions">
-        <button class="btn btn-salvar" type="button">Salvar Produto</button>
-        <button class="btn btn-cancelar" type="button">Limpar</button>
+        <button class="btn btn-salvar" type="button" (click)="submeter()">{{ modoEdicao ? 'Salvar Alteracao' : 'Salvar Produto' }}</button>
+        <button class="btn btn-cancelar" type="button" (click)="limpar()">Limpar</button>
       </div>
     </form>
   </section>
@@ -86,7 +86,6 @@
         <h2 id="titulo-listagem">Listagem de Produtos</h2>
         <p>Visualizacao dos produtos cadastrados no sistema.</p>
       </div>
-      <input class="campo-busca" type="search" placeholder="Buscar produto">
     </div>
 
     <table class="tabela-produtos">
@@ -102,42 +101,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td class="titulo">Notebook Inspiron 15</td>
-          <td>Dell</td>
-          <td><span class="badge">Notebooks</span></td>
-          <td class="preco">R$ 3.499,90</td>
-          <td><span class="estoque disponivel">12 unidades</span></td>
-          <td class="acoes">
-            <button class="btn btn-editar" type="button">Editar</button>
-            <button class="btn btn-deletar" type="button">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td class="titulo">Mouse Gamer RGB</td>
-          <td>Redragon</td>
-          <td><span class="badge">Perifericos</span></td>
-          <td class="preco">R$ 149,90</td>
-          <td><span class="estoque disponivel">35 unidades</span></td>
-          <td class="acoes">
-            <button class="btn btn-editar" type="button">Editar</button>
-            <button class="btn btn-deletar" type="button">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td class="titulo">SSD 1TB NVMe</td>
-          <td>Kingston</td>
-          <td><span class="badge">Componentes</span></td>
-          <td class="preco">R$ 429,90</td>
-          <td><span class="estoque baixo">4 unidades</span></td>
-          <td class="acoes">
-            <button class="btn btn-editar" type="button">Editar</button>
-            <button class="btn btn-deletar" type="button">Excluir</button>
-          </td>
-        </tr>
+        @for (p of listaProdutos; track p.id) {
+          <tr>
+            <td>{{ p.id }}</td>
+            <td class="titulo">{{ p.nome }}</td>
+            <td>{{ p.marca }}</td>
+            <td><span class="badge">{{ p.categoria }}</span></td>
+            <td class="preco">R$ {{ p.preco | number:'1.2-2' }}</td>
+            <td><span class="estoque">{{ p.estoque }} unidades</span></td>
+            <td class="acoes">
+              <button class="btn btn-editar" type="button" (click)="editar(p.id!)">Editar</button>
+              <button class="btn btn-deletar" type="button" (click)="excluir(p.id!)">Excluir</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </section>
