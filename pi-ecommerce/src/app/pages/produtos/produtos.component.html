@@ -1,1 +1,41 @@
-<p>produtos works!</p>
+<div class="container">
+  <div class="header">
+    <h1>Catálogo de Produtos</h1>
+    <p>Confira nossa seleção de tecnologia de ponta</p>
+  </div>
+
+  <div *ngIf="carregando" class="loading">
+    <p>Carregando produtos...</p>
+  </div>
+
+  <div *ngIf="erro && !carregando" class="erro">
+    <p>{{ erro }}</p>
+    <button (click)="carregarProdutos()" class="btn-retry">Tentar Novamente</button>
+  </div>
+
+  <div *ngIf="!carregando && !erro && produtos.length > 0" class="produtos-grid">
+    <div *ngFor="let produto of produtos" class="produto-card">
+      <div class="produto-header">
+        <h3>{{ produto.nome }}</h3>
+        <span class="marca">{{ produto.marca }}</span>
+      </div>
+
+      <div class="produto-details">
+        <p class="categoria">{{ produto.categoria }}</p>
+        <p class="modelo">Modelo: {{ produto.modelo }}</p>
+        <p class="descricao">{{ produto.descricao }}</p>
+      </div>
+
+      <div class="produto-footer">
+        <div class="preco">{{ formatarPreco(produto.preco) }}</div>
+        <div class="estoque" [class.baixo]="produto.estoque <= 5">
+          {{ produto.status }} ({{ produto.estoque }} un.)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!carregando && !erro && produtos.length === 0" class="vazio">
+    <p>Nenhum produto disponível no momento</p>
+  </div>
+</div>

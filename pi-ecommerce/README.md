@@ -1,52 +1,140 @@
-# PiEcommerce
+# Projeto Integrador - E-commerce de Tecnologia
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.25.
+Sistema de e-commerce desenvolvido em Angular com login de usuário e admin, CRUD de produtos consumindo dados do JSON-Server.
 
-## Development server
+## Funcionalidades
 
-To start a local development server, run:
+### Sistema de Login
+- **Admin**: Nome: `admin` | Senha: `12345`
+  - Acesso completo ao CRUD de produtos
+  - Gerenciamento de estoque
+  
+- **Usuário Comum**: Nome: qualquer (exceto "admin") | Senha: `54321`
+  - Visualização apenas de produtos
+  - Sem acesso ao gerenciamento
 
+### Operações de Produtos
+- **Listar produtos**: Visualização em grid com informações principais
+- **Criar produtos** (admin): Formulário completo com validação
+- **Editar produtos** (admin): Atualizar informações de produtos existentes
+- **Deletar produtos** (admin): Remover produtos do catálogo
+
+## Como Executar o Projeto
+
+### 1. Instalar dependências
+```bash
+cd pi-ecommerce
+npm install
+```
+
+### 2. Iniciar o JSON-Server (Backend Mock)
+
+Em um **novo terminal**, execute:
+```bash
+npm install -g json-server
+
+# Na pasta backend/
+json-server --watch db.json --port 3000
+```
+
+Ou se receber erro de CORS:
+```bash
+json-server --watch db.json --port 3000 --cors
+```
+
+### 3. Iniciar o servidor Angular
+
+Em outro **terminal**, na pasta `pi-ecommerce`:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+Ou:
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 4. Acessar a aplicação
 
-```bash
-ng generate --help
+Abra o navegador em: `http://localhost:4200`
+
+## Credenciais de Teste
+
+### Login como Admin
+- Nome: `admin`
+- Senha: `12345`
+- Acesso: Gerenciar Produtos (CRUD completo)
+
+### Login como Usuário
+- Nome: `João` (ou qualquer nome que não seja "admin")
+- Senha: `54321`
+- Acesso: Apenas visualização de produtos
+
+## Estrutura do Projeto
+
+```
+src/
+├── app/
+│   ├── core/
+│   │   ├── services/
+│   │   │   ├── auth.service.ts       # Autenticação
+│   │   │   └── produto.service.ts    # CRUD de produtos
+│   │   ├── guards/
+│   │   │   ├── auth.guard.ts         # Proteção de rotas
+│   │   │   └── admin.guard.ts        # Proteção admin
+│   │   └── types/
+│   │       └── types.ts               # Tipos de dados
+│   ├── pages/
+│   │   ├── login/                    # Tela de login
+│   │   ├── produtos/                 # Listagem de produtos
+│   │   └── gerenciar-produtos/       # CRUD de produtos (admin)
+│   ├── shared/
+│   │   └── navbar/                   # Barra de navegação
+│   └── app.routes.ts                 # Rotas da aplicação
+├── backend/
+│   ├── db.json                       # Base de dados JSON-Server
+│   └── JSON-SERVER-SETUP.md          # Instruções do JSON-Server
 ```
 
-## Building
+## Tecnologias Utilizadas
 
-To build the project run:
+- **Angular 19.2.25**
+- **TypeScript 5.7.2**
+- **JSON-Server** (para simular API)
+- **RxJS 7.8.0**
 
-```bash
-ng build
+## Observações Importantes
+
+1. **JSON-Server obrigatório**: A aplicação precisa do JSON-Server rodando em `http://localhost:3000`
+2. **LocalStorage**: Dados de autenticação são salvos em localStorage
+3. **Validação de formulários**: Implementada no componente
+4. **Persistência**: Produtos são salvos no JSON-Server, não no localStorage
+
+## Endpoints da API
+
+```
+GET    /produtos              # Listar todos
+GET    /produtos/:id          # Buscar por ID
+POST   /produtos              # Criar novo
+PUT    /produtos/:id          # Atualizar
+DELETE /produtos/:id          # Deletar
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Troubleshooting
 
-## Running unit tests
+### Erro: "Cannot GET /produtos"
+- Verifique se o JSON-Server está rodando em `http://localhost:3000`
+- Tente usar o comando com `--cors`: `json-server --watch db.json --port 3000 --cors`
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Login não funciona
+- Verifique se o nome de usuário e senha estão corretos
+- Senha de admin é `12345` (não 1234)
+- Senha de usuário é `54321` (não 5432)
 
-```bash
-ng test
-```
+### Produtos não carregam
+- Confirme que o JSON-Server está em execução
+- Abra `http://localhost:3000/produtos` no navegador para validar
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
 
 ```bash
 ng e2e

@@ -17,6 +17,7 @@ export class GerenciarProdutosComponent implements OnInit {
   produtoId?: number;
   modoEdicao = false;
   termoBusca = '';
+  modalAberto = false;
 
   constructor(private service: ProdutoService) {}
 
@@ -26,7 +27,7 @@ export class GerenciarProdutosComponent implements OnInit {
 
   carregarProdutos(): void {
     this.service.listar().subscribe((produtos) => {
-      this.listaProdutos = produtos;
+      this.listaProdutos = produtos.sort((a, b) => (b.id || 0) - (a.id || 0));
     });
   }
 
@@ -57,16 +58,22 @@ export class GerenciarProdutosComponent implements OnInit {
     return this.listaProdutos.filter((produto) => Number(produto.estoque || 0) <= 5).length;
   }
 
+  abrirModalNovo(): void {
+    this.limpar();
+    this.modalAberto = true;
+  }
+
   editar(id: number): void {
     this.produtoId = id;
     this.modoEdicao = true;
+    this.modalAberto = true;
     this.service.buscarPorId(id).subscribe((p) => {
       this.produto = { ...p };
     });
   }
 
   excluir(id: number): void {
-    if (id) {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
       this.service.excluir(id).subscribe(() => {
         this.carregarProdutos();
       });
@@ -74,18 +81,28 @@ export class GerenciarProdutosComponent implements OnInit {
   }
 
   submeter(): void {
+    if (!this.produto.nome || !this.produto.marca || !this.produto.categoria || !this.produto.preco || this.produto.estoque === undefined) {
+      alert('Por favor preencha todos os campos obrigatorios!');
+      return;
+    }
+
     if (this.modoEdicao && this.produtoId) {
       this.produto.id = this.produtoId;
       this.service.editar(this.produto).subscribe(() => {
-        this.limpar();
+        this.fecharModal();
         this.carregarProdutos();
       });
     } else {
       this.service.incluir(this.produto).subscribe(() => {
-        this.limpar();
+        this.fecharModal();
         this.carregarProdutos();
       });
     }
+  }
+
+  fecharModal(): void {
+    this.modalAberto = false;
+    this.limpar();
   }
 
   limpar(): void {
