@@ -1,107 +1,157 @@
-
+<!-- HEADER -->
 <header class="navbar">
-        <a href="../main/index.html?page=home" class="logo">
-            <i class="fa-solid fa-microchip"></i> TechStore
-        </a>
+  <a routerLink="/home" class="logo">
+    <i class="fa-solid fa-microchip"></i> TechStore
+  </a>
+  <nav class="nav-links">
+    <a routerLink="/home">Início</a>
+    <a routerLink="/produtos">Produtos</a>
+  </nav>
+  <div class="nav-actions">
+    <div class="cart-icon">
+      <a routerLink="/carrinho" title="Ir para o Carrinho">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+    </div>
+  </div>
+</header>
 
-        <nav class="nav-links">
-            <a href="../main/index.html">Início</a>
-            <a href="../main/index.html?page=produtos">Produtos</a>
-        </nav>
+<main class="container">
 
-        <div class="nav-actions">
-            <div class="admin-info" id="admin-status"></div>
-            <div class="cart-icon">
-                <a href="../carrinho/carrinho.html" title="Ir para o Carrinho">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+  <!-- Cabeçalho + botão novo produto -->
+  <div class="crud-header">
+    <h1>Gerenciar Produtos</h1>
+    <button class="btn-primary" (click)="abrirModalNovo()">
+      <i class="fa-solid fa-plus"></i> Novo Produto
+    </button>
+  </div>
 
-    <main class="container">
-        <div class="crud-header">
-            <h1>Gerenciar Produtos</h1>
-            <button class="btn-primary" onclick="abrirModalForm()">
-                <i class="fa-solid fa-plus"></i> Novo Produto
+  <!-- Cards de resumo -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-label">Total em Estoque</span>
+      <span class="stat-value">{{ totalEstoque }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Valor do Estoque</span>
+      <span class="stat-value">{{ valorEstoque | currency:'BRL' }}</span>
+    </div>
+    <div class="stat-card alert">
+      <span class="stat-label">Baixo Estoque</span>
+      <span class="stat-value">{{ totalBaixoEstoque }}</span>
+    </div>
+  </div>
+
+  <!-- Campo de busca -->
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Buscar por nome, marca, categoria..."
+      [(ngModel)]="termoBusca"
+    />
+  </div>
+
+  <!-- Tabela de produtos -->
+  <div class="table-container">
+    <table class="crud-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Marca</th>
+          <th>Categoria</th>
+          <th>Modelo</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Itera sobre a lista filtrada -->
+        <tr *ngFor="let p of produtosFiltrados">
+          <td><strong>{{ p.nome }}</strong></td>
+          <td>{{ p.marca }}</td>
+          <td>{{ p.categoria }}</td>
+          <td>{{ p.modelo }}</td>
+          <td class="td-price">{{ p.preco | currency:'BRL' }}</td>
+          <td>{{ p.estoque }}</td>
+          <td>{{ p.status }}</td>
+          <td>
+            <button class="btn-icon edit" (click)="editar(p.id!)" title="Editar">
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
-        </div>
+            <button class="btn-icon delete" (click)="excluir(p.id!)" title="Excluir">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
 
-        <div class="table-container">
-            <table class="crud-table">
-                <thead>
-                    <tr>
-                        <th>Imagem</th>
-                        <th>Nome</th>
-                        <th>Categoria</th>
-                        <th>Preço</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="tabelaProdutos"></tbody>
-            </table>
-        </div>
-    </main>
+<!-- MODAL FORM (criar / editar) — controlado por modalAberto -->
+<div class="modal-overlay" *ngIf="modalAberto">
+  <div class="modal-content form-layout">
 
-    <div id="modalForm" class="modal-overlay">
-        <div class="modal-content form-layout">
-            <div class="modal-left">
-                <img id="imgPreview" src="" alt="Preview do Produto">
-            </div>
-            <div class="modal-right">
-                <h2 id="modalTitle">Novo Produto</h2>
+    <div class="modal-right">
+      <h2>{{ modoEdicao ? 'Editar Produto' : 'Novo Produto' }}</h2>
 
-                <input type="hidden" id="produtoId">
-                <input type="hidden" id="produtoImgUrl">
+      <div class="input-group">
+        <label>Nome do Produto</label>
+        <input type="text" [(ngModel)]="produto.nome" placeholder="Ex: Monitor Gamer...">
+      </div>
 
-                <div class="input-group">
-                    <label>Nome do Produto</label>
-                    <input type="text" id="produtoNome" placeholder="Ex: Monitor Gamer...">
-                </div>
+      <div class="input-group">
+        <label>Marca</label>
+        <input type="text" [(ngModel)]="produto.marca" placeholder="Ex: Samsung...">
+      </div>
 
-                <div class="input-group">
-                    <label>Tipo / Categoria</label>
-                    <select id="produtoTipo" onchange="atualizarImagemPreview()">
-                        <option value="Computadores">Computadores</option>
-                        <option value="Notebooks">Notebooks</option>
-                        <option value="Monitores">Monitores</option>
-                        <option value="Periféricos">Periféricos</option>
-                        <option value="Componentes">Componentes</option>
-                    </select>
-                </div>
+      <div class="input-group">
+        <label>Categoria</label>
+        <select [(ngModel)]="produto.categoria">
+          <option value="Computadores">Computadores</option>
+          <option value="Notebooks">Notebooks</option>
+          <option value="Monitores">Monitores</option>
+          <option value="Periféricos">Periféricos</option>
+          <option value="Componentes">Componentes</option>
+        </select>
+      </div>
 
-                <div class="input-group">
-                    <label>Preço (R$)</label>
-                    <input type="number" id="produtoPreco" step="0.01" placeholder="0.00">
-                </div>
+      <div class="input-group">
+        <label>Modelo</label>
+        <input type="text" [(ngModel)]="produto.modelo" placeholder="Ex: Odyssey G5...">
+      </div>
 
-                <div class="input-group">
-                    <label>Descrição</label>
-                    <textarea id="produtoDesc" rows="4" placeholder="Detalhes do produto..."></textarea>
-                </div>
+      <div class="input-group">
+        <label>Preço (R$)</label>
+        <input type="number" [(ngModel)]="produto.preco" step="0.01" placeholder="0.00">
+      </div>
 
-                <div class="modal-actions">
-                    <button class="btn-secondary" onclick="fecharModais()">Cancelar</button>
-                    <button class="btn-primary" onclick="salvarProduto()">Salvar</button>
-                </div>
-            </div>
-        </div>
+      <div class="input-group">
+        <label>Estoque</label>
+        <input type="number" [(ngModel)]="produto.estoque" placeholder="0">
+      </div>
+
+      <div class="input-group">
+        <label>Status</label>
+        <select [(ngModel)]="produto.status">
+          <option value="Disponivel">Disponível</option>
+          <option value="Indisponivel">Indisponível</option>
+          <option value="Descontinuado">Descontinuado</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Descrição</label>
+        <textarea [(ngModel)]="produto.descricao" rows="3" placeholder="Detalhes do produto..."></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-secondary" (click)="fecharModal()">Cancelar</button>
+        <button class="btn-primary" (click)="submeter()">Salvar</button>
+      </div>
     </div>
 
-    <div id="modalDelete" class="modal-overlay">
-        <div class="modal-content delete-layout">
-            <div class="delete-icon">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-            </div>
-            <h2>Excluir Produto</h2>
-            <p>Tem certeza que deseja excluir este produto? Esta ação não pode ser desfeita.</p>
-            <div class="modal-actions center">
-                <button class="btn-secondary" onclick="fecharModais()">Cancelar</button>
-                <button class="btn-danger" onclick="confirmarExclusao()">Confimar</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="../auth.js"></script>
-    <script src="gerenciarProduto.js"></script>
-
+  </div>
+</div>

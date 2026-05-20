@@ -83,6 +83,44 @@ button { cursor: pointer; font-weight: 600; border-radius: 6px; transition: all 
 .delete-layout h2 { margin-bottom: 0.5rem; }
 .delete-layout p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; }
 
+
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  flex: 1;
+
+  &.alert .stat-value { color: var(--accent-red); }
+}
+
+.stat-label { display: block; color: var(--text-secondary); font-size: 0.85rem; }
+.stat-value { display: block; font-size: 1.5rem; font-weight: bold; margin-top: 0.25rem; }
+
+.search-bar {
+  margin-bottom: 1.5rem;
+
+  input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    outline: none;
+
+    &:focus { border-color: var(--accent-blue); }
+  }
+}
+
+
+
 @media (max-width: 900px) {
     .navbar,
     .container {
