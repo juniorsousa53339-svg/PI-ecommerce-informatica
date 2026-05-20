@@ -2,6 +2,13 @@
     --cor-background: rgba(16, 24, 40, 1);
     --cor-principal: white;
     --cor-secundaria: grey;
+    --bg-main: #09090b;
+    --bg-panel: #141722;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --accent-blue: #3b82f6;
+    --border-color: #27272a;
+    --input-bg: #1e2433;
 }
 * {
     margin: 0;
