@@ -5,10 +5,7 @@ import { Home } from './componentes/home/home';
 
 export const routes: Routes = [
 
-
-     // Implementar a Rota do Login e Produtos
-     
-  { path: 'home', component: Home, canActivate: [Home], title: 'Home' },
-  { path: 'gerenciar-produtos', component: GerenciarProdutosComponent, title: 'Gerenciar Produtos' },
+  { path: '', component: Home, title: 'Home' },
+  { path: 'gerenciar-produtos', component: GerenciarProdutosComponent, title: 'Gerenciar - Produtos' },
 
 ];
