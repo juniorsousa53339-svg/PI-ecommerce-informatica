@@ -7,16 +7,16 @@
         </div>
 
         <nav class="nav-links">
-            <a href="../home/home.html" target="conteudo-principal" data-page="home" class="active">Início</a>
-            <a href="../produtos/produtos.html" target="conteudo-principal" data-page="produtos">Produtos</a>
+            <a routerLink="/home" class="active">Início</a>
+            <a routerLink="/produtos" >Produtos</a>
         </nav>
 
         <div class="nav-actions">
             <div class="admin-info" id="admin-status">
-            <a href="../login/login.html" class="login-link" target="conteudo-principal"><i class="fa-solid fa-user"></i><span>Login</span></a>
+            <a routerLink="/home" class="login-link"><i class="fa-solid fa-user"></i><span>Login</span></a> <!-- alterar rota para login -->
            </div>         
             <div class="cart-icon">
-                <a href="../carrinho/carrinho.html" target="_top" title="Ir para o Carrinho">
+                <a routerLink="/home"> <!-- alterar rota para carrinho -->
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
