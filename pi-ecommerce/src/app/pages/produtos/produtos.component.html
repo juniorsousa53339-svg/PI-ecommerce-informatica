@@ -14,7 +14,13 @@
   </div>
 
   <div *ngIf="!carregando && !erro && produtos.length > 0" class="produtos-grid">
+
     <div *ngFor="let produto of produtos" class="produto-card">
+
+    <div class="produto-imagem">
+      <img [src]="produto.imagem" [alt]="produto.nome">
+    </div>
+
       <div class="produto-header">
         <h3>{{ produto.nome }}</h3>
         <span class="marca">{{ produto.marca }}</span>
