@@ -240,9 +240,9 @@ h1 {
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.btn-gerenciar.hidden {
+/* .btn-gerenciar.hidden {
     display: none;
-}
+} */
 
 .products-footer {
     background-color: #121827;
