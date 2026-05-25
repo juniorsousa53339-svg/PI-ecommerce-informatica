@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
+<<<<<<< Updated upstream
 export class Home implements OnInit{
 
    produtos: Produto[] = [];
@@ -27,4 +28,8 @@ export class Home implements OnInit{
 
     });
   }
+=======
+export class Home {
+
+>>>>>>> Stashed changes
 }
