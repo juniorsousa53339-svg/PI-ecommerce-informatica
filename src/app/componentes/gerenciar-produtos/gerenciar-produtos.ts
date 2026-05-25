@@ -1,12 +1,12 @@
 import { Produto } from './../../core/types/types';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../core/services/produto.service';
 
-
 @Component({
   selector: 'app-gerenciar-produtos',
+  standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './gerenciar-produtos.html',
   styleUrl: './gerenciar-produtos.css'
@@ -20,7 +20,10 @@ export class GerenciarProdutosComponent implements OnInit {
   termoBusca = '';
   modalAberto = false;
 
-  constructor(private service: ProdutoService) {}
+  constructor(
+    private service: ProdutoService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.carregarProdutos();
@@ -29,6 +32,8 @@ export class GerenciarProdutosComponent implements OnInit {
   carregarProdutos(): void {
     this.service.listar().subscribe((produtos) => {
       this.listaProdutos = produtos.sort((a, b) => (b.id || 0) - (a.id || 0));
+
+      this.cdr.detectChanges();
     });
   }
 
@@ -46,7 +51,10 @@ export class GerenciarProdutosComponent implements OnInit {
   }
 
   get totalEstoque(): number {
-    return this.listaProdutos.reduce((total, produto) => total + Number(produto.estoque || 0), 0);
+    return this.listaProdutos.reduce(
+      (total, produto) => total + Number(produto.estoque || 0),
+      0
+    );
   }
 
   get valorEstoque(): number {
@@ -56,7 +64,9 @@ export class GerenciarProdutosComponent implements OnInit {
   }
 
   get totalBaixoEstoque(): number {
-    return this.listaProdutos.filter((produto) => Number(produto.estoque || 0) <= 5).length;
+    return this.listaProdutos.filter(
+      (produto) => Number(produto.estoque || 0) <= 5
+    ).length;
   }
 
   abrirModalNovo(): void {
@@ -68,8 +78,11 @@ export class GerenciarProdutosComponent implements OnInit {
     this.produtoId = id;
     this.modoEdicao = true;
     this.modalAberto = true;
+
     this.service.buscarPorId(id).subscribe((p) => {
       this.produto = { ...p };
+
+      this.cdr.detectChanges();
     });
   }
 
@@ -82,22 +95,32 @@ export class GerenciarProdutosComponent implements OnInit {
   }
 
   submeter(): void {
-    if (!this.produto.nome || !this.produto.marca || !this.produto.categoria || !this.produto.preco || this.produto.estoque === undefined) {
-      alert('Por favor preencha todos os campos obrigatorios!');
+    if (
+      !this.produto.nome ||
+      !this.produto.marca ||
+      !this.produto.categoria ||
+      !this.produto.preco ||
+      this.produto.estoque === undefined
+    ) {
+      alert('Por favor preencha todos os campos obrigatórios!');
       return;
     }
 
     if (this.modoEdicao && this.produtoId) {
       this.produto.id = this.produtoId;
+
       this.service.editar(this.produto).subscribe(() => {
         this.fecharModal();
         this.carregarProdutos();
       });
+
     } else {
+
       this.service.incluir(this.produto).subscribe(() => {
         this.fecharModal();
         this.carregarProdutos();
       });
+
     }
   }
 
@@ -115,7 +138,7 @@ export class GerenciarProdutosComponent implements OnInit {
   private criarProdutoVazio(): Produto {
     return {
       nome: '',
-      imagem:'',
+      imagem: '',
       marca: '',
       categoria: '',
       modelo: '',
