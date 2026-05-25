@@ -17,12 +17,5 @@ export const routes: Routes = [
    //adicionar deopois que gerar os componentes
    */
 
-<<<<<<< Updated upstream
-=======
-     // Implementar a Rota do Login e Produtos
-
-  { path: 'home', component: Home, title: 'Home' },
-  { path: 'gerenciar-produtos', component: GerenciarProdutosComponent, title: 'Gerenciar Produtos' },
->>>>>>> Stashed changes
 
 ];
