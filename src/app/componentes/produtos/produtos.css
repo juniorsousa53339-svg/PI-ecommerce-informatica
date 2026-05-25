@@ -96,7 +96,7 @@ h1 {
 }
 
 .products-section {
-    flex: 1;
+    width: 1500px;
 }
 
 .results-count {

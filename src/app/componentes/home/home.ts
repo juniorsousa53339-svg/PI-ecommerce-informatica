@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterLink} from "@angular/router";
 import { ProdutoCard } from '../produto-card/produto-card';
 import { Produto } from '../../core/types/types';
@@ -15,12 +15,16 @@ export class Home implements OnInit{
 
    produtos: Produto[] = [];
 
-  constructor(private service: ProdutoService) {}
+  constructor(private service: ProdutoService,
+     private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
 
     this.service.listar().subscribe(produtos => {
       this.produtos = produtos.slice(0, 6);
+          this.cdr.detectChanges();
+
     });
   }
 }
