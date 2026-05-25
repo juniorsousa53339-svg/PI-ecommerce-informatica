@@ -6,7 +6,7 @@ import { ProdutosComponent } from './componentes/produtos/produtos';
 import { Carrinho } from './componentes/carrinho/carrinho';
 import { GerenciarProdutosNovos } from './componentes/gerenciar-produtos-novos/gerenciar-produtos-novos';
 import { GerenciarAlterarProdutos } from './componentes/gerenciar-alterar-produtos/gerenciar-alterar-produtos';
-
+import { Login } from './componentes/login/login';
 
 export const routes: Routes = [
 
@@ -17,10 +17,9 @@ export const routes: Routes = [
    { path: 'novo-produto', component: GerenciarProdutosNovos, title: 'TechStore - Gerenciar Produtos Novos' },
    { path: 'alterar-produto/:id', component: GerenciarAlterarProdutos, title: 'TechStore - Alterar Produto' },
   { path: 'carrinho', component: Carrinho, title: 'TechStore - Carrinho' },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
-  /* { path: 'login', component: Home, title: 'TechStore - Login' },
-   //adicionar deopois que gerar os componentes
-   */
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
+   { path: 'login', component: Login, title: 'TechStore - Login' },
+   
 
 
 ];
