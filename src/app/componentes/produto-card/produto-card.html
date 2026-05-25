@@ -1,0 +1,28 @@
+<div class="card">
+
+  <img
+    [src]="produto.imagem"
+    [alt]="produto.nome"
+    class="card-img">
+
+  <div class="card-content">
+
+    <h3>{{ produto.nome }}</h3>
+
+    <p class="marca">{{ produto.marca }}</p>
+
+    <p class="descricao">
+      {{ produto.descricao }}
+    </p>
+
+    <p class="preco">
+      R$ {{ produto.preco }}
+    </p>
+
+    <button class="btn-detalhes">
+      Ver detalhes
+    </button>
+
+  </div>
+
+</div>

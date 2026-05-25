@@ -66,6 +66,12 @@
                 <a>
                 <button routerLink="/produtos">Ver Todos</button>
                 </a>
+
+                <app-produto-card 
+                *ngFor="let produto of produtos" 
+                [produto]="produto">
+                </app-produto-card>
+
             </div>
         </div>
     </section>

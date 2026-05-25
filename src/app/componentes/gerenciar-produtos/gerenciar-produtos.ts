@@ -115,6 +115,7 @@ export class GerenciarProdutosComponent implements OnInit {
   private criarProdutoVazio(): Produto {
     return {
       nome: '',
+      imagem:'',
       marca: '',
       categoria: '',
       modelo: '',
