@@ -1,41 +1,60 @@
 <main class="container">
-        
-        <div class="page-header">
-            <h1>Produtos</h1>
-            <a routerLink="/gerenciar-produtos" target="_top" class="btn-gerenciar hidden" id="btnGerenciarProdutos">
-                <i class="fa-solid fa-gear"></i> Gerenciar Produtos
-            </a>
+
+  <!-- Cabeçalho da página -->
+  <div class="page-header">
+    <h1>Produtos</h1>
+    <a routerLink="/gerenciar-produtos" class="btn-gerenciar" id="btnGerenciarProdutos">
+      <i class="fa-solid fa-gear"></i> Gerenciar Produtos
+    </a>
+  </div>
+
+  <div class="content-layout">
+    <!-- Barra lateral: busca e categorias -->
+    <aside class="sidebar">
+      <!-- Busca -->
+      <div class="search-section">
+        <label>Buscar</label>
+        <div class="search-box">
+          <input
+            type="text"
+            [(ngModel)]="termoBusca"
+            placeholder="Buscar produtos..."
+          >
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
+      </div>
 
-        <div class="content-layout">
-            <aside class="sidebar">
-                <div class="search-section">
-                    <label>Buscar</label>
-                    <div class="search-box">
-                        <input type="text" placeholder="Buscar produtos..." id="searchInput">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>
+      <!-- Categorias -->
+      <div class="category-section">
+        <label>Categorias</label>
+        <ul class="category-list">
+          <li
+            [class.active]="categoriaSelecionada === ''"
+            (click)="categoriaSelecionada = ''"
+          >
+            Todos os Produtos
+          </li>
+          <li
+            *ngFor="let cat of categorias"
+            [class.active]="categoriaSelecionada === cat"
+            (click)="categoriaSelecionada = cat"
+          >
+            {{ cat }}
+          </li>
+        </ul>
+      </div>
+    </aside>
 
-                <div class="category-section">
-                    <label>Categorias</label>
-                    <ul class="category-list">
-                        <li class="active">Todos os Produtos</li>
-                        <li>Computadores</li>
-                        <li>Notebooks</li>
-                        <li>Monitores</li>
-                        <li>Periféricos</li>
-                        <li>Componentes</li>
-                    </ul>
-                </div>
-            </aside>
+    <!-- Seção de produtos -->
+    <section class="products-section">
+      <p class="results-count">{{ produtosFiltrados.length }} produto(s) encontrado(s)</p>
 
-            <section class="products-section">
-                <p class="results-count">12 produto(s) encontrado(s)</p>
-                    <div class="card-grid">
-                    <app-produto-card *ngFor="let produto of produtos" [produto]="produto">
-                    </app-produto-card>
-                </div>
-            </section>
-        </div>
-    </main>
+      <div class="card-grid">
+        <app-produto-card
+          *ngFor="let produto of produtosFiltrados"
+          [produto]="produto"
+        ></app-produto-card>
+      </div>
+    </section>
+  </div>
+</main>
