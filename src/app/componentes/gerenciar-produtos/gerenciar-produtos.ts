@@ -73,19 +73,12 @@ export class GerenciarProdutosComponent implements OnInit {
 
   abrirModalNovo(): void {
    this.router.navigate(['/novo-produto']);
+
   }
 
   editar(id: number): void {
-    this.produtoId = id;
-    this.modoEdicao = true;
-    this.modalAberto = true;
-
-    this.service.buscarPorId(id).subscribe((p) => {
-      this.produto = { ...p };
-
-      this.cdr.detectChanges();
-    });
-  }
+  this.router.navigate(['/alterar-produto', id]);
+}
 
   excluir(id: number): void {
     if (confirm('Tem certeza que deseja excluir este produto?')) {

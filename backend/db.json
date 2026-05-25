@@ -165,7 +165,7 @@
       "modelo": "980 Pro",
       "preco": 1199.9,
       "estoque": 2,
-      "status": "Baixo estoque",
+      "status": "Esgotado",
       "descricao": "SSD NVMe PCIe 4.0 com leitura ate 7100 MB/s"
     },
     {
@@ -175,7 +175,7 @@
       "marca": "SteelSeries",
       "categoria": "Acessorios",
       "modelo": "QcK+",
-      "preco": 199.9,
+      "preco": 250,
       "estoque": 42,
       "status": "Disponivel",
       "descricao": "Mousepad extra grande com superfície premium para precisao"
