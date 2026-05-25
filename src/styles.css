@@ -11,6 +11,7 @@
     --border-color: #27272a;
     --input-bg: #1e2433;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -21,4 +22,5 @@
 
 body{
     background-color: var(--cor-body-background);
+    color: var(--cor-principal);
 }

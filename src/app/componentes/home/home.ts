@@ -18,9 +18,9 @@ export class Home implements OnInit{
   constructor(private service: ProdutoService) {}
 
   ngOnInit(): void {
+
     this.service.listar().subscribe(produtos => {
       this.produtos = produtos.slice(0, 6);
-      console.log(this.produtos);
     });
   }
 }

@@ -32,7 +32,9 @@
 
             <section class="products-section">
                 <p class="results-count">12 produto(s) encontrado(s)</p>
-                <div class="product-grid" id="productGrid">
+                    <div class="card-grid">
+                    <app-produto-card *ngFor="let produto of produtos" [produto]="produto">
+                    </app-produto-card>
                 </div>
             </section>
         </div>
