@@ -1,0 +1,418 @@
+/* =========================================================
+   CONTAINER PRINCIPAL
+   ========================================================= */
+
+/*
+  Container principal da tela.
+  Responsável por centralizar o formulário
+  e manter o padrão visual dark do sistema.
+*/
+
+.container {
+
+  min-height: 100vh;
+
+  background-color: black;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 40px 20px;
+
+}
+
+
+/* =========================================================
+   ÁREA DO FORMULÁRIO
+   ========================================================= */
+
+/*
+  Section utilizada para organizar
+  o conteúdo principal da página.
+*/
+
+.form-section {
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+}
+
+
+/* =========================================================
+   CARD DO FORMULÁRIO
+   ========================================================= */
+
+/*
+  Card principal onde ficam os campos.
+  Foi utilizado um visual escuro seguindo
+  o padrão visual da Home do projeto.
+*/
+
+.form-card {
+
+  width: 100%;
+
+  max-width: 700px;
+
+  background-color: var(--cor-background);
+
+  border: 1px solid rgb(40, 56, 78);
+
+  border-radius: 16px;
+
+  padding: 40px;
+
+
+
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+/*
+  Título principal da tela.
+*/
+
+.form-card h1 {
+
+  color: var(--cor-principal);
+
+  font-size: 32px;
+
+  margin-bottom: 40px;
+
+  text-align: center;
+
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+/*
+  Organização geral dos campos do formulário.
+*/
+
+.formulario {
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+
+/* =========================================================
+   GRUPO DE INPUTS
+   ========================================================= */
+
+/*
+  Cada campo fica separado em blocos,
+  melhorando a organização visual.
+*/
+
+.input-group {
+
+  display: flex;
+
+  flex-direction: column;
+
+  margin-bottom: 70px;
+
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+/*
+  Labels responsáveis pela identificação
+  de cada campo do formulário.
+*/
+
+.input-group label {
+
+  color: var(--cor-principal);
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+
+}
+
+
+/* =========================================================
+   INPUTS / SELECT / TEXTAREA
+   ========================================================= */
+
+/*
+  Padronização visual dos campos.
+  Todos seguem o mesmo estilo para manter
+  consistência visual na interface.
+*/
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+
+  width: 100%;
+
+  background-color: #111827;
+
+  border: 1px solid rgb(40, 56, 78);
+
+  border-radius: 10px;
+
+  padding: 14px;
+
+  color: white;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.3s;
+
+}
+
+
+/* =========================================================
+   EFEITO DE FOCO NOS INPUTS
+   ========================================================= */
+
+/*
+  Destaca visualmente o campo selecionado
+  pelo usuário durante o preenchimento.
+*/
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+
+  border-color: rgb(0, 132, 255);
+
+  box-shadow: 0px 0px 8px rgba(0, 132, 255, 0.3);
+
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+/*
+  Impede redimensionamento manual
+  para manter o layout consistente.
+*/
+
+.input-group textarea {
+
+  resize: none;
+
+}
+
+
+/* =========================================================
+   LINHAS COM MAIS DE UM CAMPO
+   ========================================================= */
+
+/*
+  Utilizado para organizar inputs
+  lado a lado em telas maiores.
+*/
+
+.form-row {
+
+  display: flex;
+
+  gap: 20px;
+
+}
+
+
+/*
+  Faz os campos dividirem o mesmo espaço.
+*/
+
+.form-row .input-group {
+
+  flex: 1;
+
+}
+
+
+/* =========================================================
+   ÁREA DOS BOTÕES
+   ========================================================= */
+
+/*
+  Container dos botões de ação.
+*/
+
+.form-actions {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 16px;
+
+  margin-top: 20px;
+
+}
+
+
+/* =========================================================
+   BOTÕES PADRÃO
+   ========================================================= */
+
+/*
+  Configuração base dos botões.
+*/
+
+button {
+
+  border: none;
+
+  border-radius: 10px;
+
+  padding: 14px 24px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+}
+
+
+/* =========================================================
+   BOTÃO PRINCIPAL
+   ========================================================= */
+
+/*
+  Botão utilizado para ações principais,
+  como salvar ou cadastrar produto.
+*/
+
+.btn-primary {
+
+  background-color: rgb(0, 132, 255);
+
+  color: white;
+
+}
+
+
+/*
+  Hover do botão principal.
+*/
+
+.btn-primary:hover {
+
+  background-color: rgb(0, 102, 204);
+
+}
+
+
+/* =========================================================
+   BOTÃO SECUNDÁRIO
+   ========================================================= */
+
+/*
+  Botão utilizado para ações secundárias,
+  como cancelar operação.
+*/
+
+.btn-secondary {
+
+  background-color: transparent;
+
+  border: 1px solid rgb(40, 56, 78);
+
+  color: white;
+
+}
+
+
+/*
+  Hover do botão secundário.
+*/
+
+.btn-secondary:hover {
+
+  background-color: rgba(255, 255, 255, 0.05);
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/*
+  Ajustes para telas menores.
+  Os campos passam a ficar em coluna
+  para melhorar a experiência mobile.
+*/
+
+@media (max-width: 768px) {
+
+  .container {
+
+    padding: 20px 14px;
+
+  }
+
+  .form-card {
+
+    padding: 24px;
+
+    border-radius: 12px;
+
+  }
+
+  .form-card h1 {
+
+    font-size: 26px;
+
+    margin-bottom: 32px;
+
+  }
+
+  .form-row {
+
+    flex-direction: column;
+
+    gap: 0px;
+
+  }
+
+  .form-actions {
+
+    flex-direction: column;
+
+  }
+
+  button {
+
+    width: 100%;
+
+  }
+
+}

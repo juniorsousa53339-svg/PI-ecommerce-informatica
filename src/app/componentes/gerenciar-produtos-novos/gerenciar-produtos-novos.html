@@ -1,0 +1,98 @@
+
+<main class="container">
+
+  <section class="form-section">
+
+<div class="form-card">
+
+<h1>Novo Produto</h1>
+
+<form>
+
+<div class="input-group">
+
+  <label>Nome</label>
+
+  <input
+     type="text"
+    [(ngModel)]="produto.nome"
+    name="nome"
+>
+
+  <label>Marca</label>
+  <input
+     type="text"
+    [(ngModel)]="produto.marca"
+    name="marca"
+  >
+
+ <label>Categoria</label>
+  <input
+     type="text"
+    [(ngModel)]="produto.categoria"
+    name="categoria"
+  >
+
+  <label>Modelo</label>
+  <input
+     type="text"
+    [(ngModel)]="produto.modelo"
+    name="Modelo"
+  >
+
+  <label>Preço</label>
+  <input
+     type="number"
+    [(ngModel)]="produto.preco"
+    name="Preço"
+  >
+
+  <label>Estoque</label>
+  <input
+     type="number"
+    [(ngModel)]="produto.estoque"
+    name="Estoque"
+  >
+
+  <label>Status</label>
+  <input
+     type="text"
+    [(ngModel)]="produto.status"
+    name="Status"
+  >
+
+  <label>Descrição</label>
+  <input
+     type="text"
+    [(ngModel)]="produto.descricao"
+    name="descrição"
+  >
+
+
+
+<label for="imagem">URL da Imagem</label>
+<input
+  type="text"
+  name="imagem"
+  id="imagem"
+  [(ngModel)]="produto.imagem"
+  placeholder="Cole a URL da imagem aqui"
+>
+
+<!-- Prévia da imagem -->
+<img *ngIf="produto.imagem" [src]="produto.imagem" alt="Imagem do produto" style="max-width: 120px; margin-top: 10px;">
+
+
+</div>
+
+</form>
+
+<button (click)="salvarProduto()">
+  Salvar Produto
+</button>
+
+</div>
+
+  </section>
+
+</main>

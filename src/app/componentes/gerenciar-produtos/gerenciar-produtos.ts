@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../core/services/produto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gerenciar-produtos',
@@ -22,7 +23,8 @@ export class GerenciarProdutosComponent implements OnInit {
 
   constructor(
     private service: ProdutoService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+     private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,8 +72,7 @@ export class GerenciarProdutosComponent implements OnInit {
   }
 
   abrirModalNovo(): void {
-    this.limpar();
-    this.modalAberto = true;
+   this.router.navigate(['/novo-produto']);
   }
 
   editar(id: number): void {
