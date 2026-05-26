@@ -112,7 +112,7 @@ function renderizarProdutos() {
     for (let i = 0; i < produtos.length; i++) {
         let produto = produtos[i];
         let selo = "";
-        let botao = '<button class="btn-buy"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>';
+        let botao = '<button class="btn-buy" onclick="comprarProduto(' + i + ')"><i class="fa-solid fa-cart-shopping"></i> Comprar</button>';
 
         if (produto.selo) {
             selo = '<span class="product-badge">' + produto.selo + "</span>";
@@ -157,3 +157,17 @@ document.addEventListener("DOMContentLoaded", function () {
     controlarAcessoAdmin();
     renderizarProdutos();
 });
+function comprarProduto(i) {
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    let produto = produtos[i];
+    let existente = carrinho.findIndex(item => item.id === produto.id);
+    
+    if (existente !== -1) {
+        carrinho[existente].quantidade += 1;
+    } else {
+        carrinho.push({ ...produto, quantidade: 1 });
+    }
+
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    window.location.href = "../carrinho/carrinho.html";
+}
