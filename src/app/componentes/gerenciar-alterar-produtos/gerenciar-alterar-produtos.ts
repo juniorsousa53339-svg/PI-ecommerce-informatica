@@ -1,13 +1,14 @@
 import { ProdutoService } from './../../core/services/produto.service';
 import { Produto } from './../../core/types/types';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-gerenciar-alterar-produtos',
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './gerenciar-alterar-produtos.html',
   styleUrl: './gerenciar-alterar-produtos.css',
 })

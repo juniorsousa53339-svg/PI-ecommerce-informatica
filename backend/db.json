@@ -191,6 +191,18 @@
       "status": "Disponivel",
       "descricao": "PC BOLADO PRO MAX",
       "id": "x0AFUXXa3h4"
+    },
+    {
+      "imagem": "",
+      "nome": "",
+      "marca": "",
+      "categoria": "",
+      "modelo": "",
+      "preco": 0,
+      "estoque": 0,
+      "status": "Disponivel",
+      "descricao": "",
+      "id": "wtFwsuFr8FI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

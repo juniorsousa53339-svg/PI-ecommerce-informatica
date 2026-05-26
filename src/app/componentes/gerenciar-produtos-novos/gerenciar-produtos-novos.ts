@@ -1,12 +1,13 @@
 import { ProdutoService } from './../../core/services/produto.service';
 import { Produto } from './../../core/types/types';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-gerenciar-produtos-novos',
-  imports: [ FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './gerenciar-produtos-novos.html',
   styleUrl: './gerenciar-produtos-novos.css',
 })

@@ -5,6 +5,7 @@ import { ProdutoService } from '../../core/services/produto.service';
 import { ProdutoCard } from "../produto-card/produto-card";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
 
 
 @Component({
@@ -25,7 +26,10 @@ export class ProdutosComponent implements OnInit {
   categorias: string[] = [];
   categoriaSelecionada: string = '';
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(
+    private produtoService: ProdutoService,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.carregarProdutos();

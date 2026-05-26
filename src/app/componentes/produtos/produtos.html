@@ -3,7 +3,7 @@
   <!-- Cabeçalho da página -->
   <div class="page-header">
     <h1>Produtos</h1>
-    <a routerLink="/gerenciar-produtos" class="btn-gerenciar" id="btnGerenciarProdutos">
+    <a *ngIf="authService.isAdmin()" routerLink="/gerenciar-produtos" class="btn-gerenciar" id="btnGerenciarProdutos">
       <i class="fa-solid fa-gear"></i> Gerenciar Produtos
     </a>
   </div>

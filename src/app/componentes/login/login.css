@@ -14,7 +14,7 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
-    background-image: url('public/home.png');
+    background-image: url('/home.PNG');
     background-size: cover;
     background-position: center;
     position: relative;

@@ -13,7 +13,9 @@
 
         <div class="nav-actions">
             <div class="admin-info" id="admin-status">
-            <a routerLink="/login" routerLinkActive="active" class="login-link"><i class="fa-solid fa-user"></i><span>Login</span></a> <!-- alterar rota para login -->
+            <a *ngIf="!authService.estaLogado()" routerLink="/login" routerLinkActive="active" class="login-link"><i class="fa-solid fa-user"></i><span>Login</span></a>
+            <span *ngIf="authService.estaLogado()" class="auth-user"><i class="fa-solid fa-user"></i><span>{{ authService.isAdmin() ? 'Admin' : 'Usuario' }}</span></span>
+            <button *ngIf="authService.estaLogado()" type="button" class="logout-button" (click)="logout()">Sair</button>
            </div>
             <div class="cart-icon">
                 <a routerLink="/carrinho" routerLinkActive="active-btn">
