@@ -8,7 +8,7 @@ import { Produto } from '../types/types';
 })
 export class ProdutoService {
 
-  private readonly API_URL = 'http://localhost:3000/produtos';
+  private readonly API_URL = 'https://pi-ecommerce-informatica.onrender.com';
 
   constructor(private http: HttpClient) { }
 
