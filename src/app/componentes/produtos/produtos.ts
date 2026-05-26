@@ -25,7 +25,9 @@ export class ProdutosComponent implements OnInit {
   categorias: string[] = [];
   categoriaSelecionada: string = '';
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService,
+         private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     this.carregarProdutos();
@@ -41,12 +43,15 @@ export class ProdutosComponent implements OnInit {
         // Extrai categorias únicas
         this.categorias = Array.from(new Set(this.produtos.map(p => p.categoria)));
         this.carregando = false;
+        this.cdr.detectChanges();
+
       },
       error: (err) => {
         this.erro = 'Erro ao carregar produtos. Verifique se o JSON-Server está rodando em http://localhost:3000';
         this.carregando = false;
         console.error('Erro:', err);
-      }
+      },    
+
     });
   }
 
