@@ -1,6 +1,6 @@
 import { ProdutoService } from './../../core/services/produto.service';
 import { Produto } from './../../core/types/types';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -30,7 +30,8 @@ produto: Produto = {
 constructor(
   private service: ProdutoService,
   private route: ActivatedRoute,
-  private router: Router
+  private router: Router,
+   private cdr: ChangeDetectorRef
 ) {}
 
 
@@ -41,6 +42,7 @@ ngOnInit(): void {
 
   this.service.buscarPorId(id).subscribe((produto: Produto) => {
     this.produto = { ...produto };
+    this.cdr.detectChanges();
   });
 }
 }
