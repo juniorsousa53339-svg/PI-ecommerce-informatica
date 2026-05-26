@@ -3,7 +3,7 @@ import { Produto } from './../../core/types/types';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-gerenciar-produtos-novos',
@@ -26,14 +26,13 @@ produto: Produto = {
   descricao: ''
 };
 
-constructor(private service: ProdutoService){}
+constructor(private service: ProdutoService,private router: Router){}
 
 salvarProduto(): void {
 
  this.service.incluir(this.produto).subscribe(() => {
-
   alert('Produto cadastrado!');
-
+  this.router.navigate(['/gerenciar-produtos']);
  });
 
 }

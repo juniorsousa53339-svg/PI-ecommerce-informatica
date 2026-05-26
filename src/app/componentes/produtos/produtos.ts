@@ -28,7 +28,8 @@ export class ProdutosComponent implements OnInit {
 
   constructor(
     private produtoService: ProdutoService,
-    public authService: AuthService
+    public authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -45,12 +46,15 @@ export class ProdutosComponent implements OnInit {
         // Extrai categorias únicas
         this.categorias = Array.from(new Set(this.produtos.map(p => p.categoria)));
         this.carregando = false;
+        this.cdr.detectChanges();
+
       },
       error: (err) => {
         this.erro = 'Erro ao carregar produtos. Verifique se o JSON-Server está rodando em http://localhost:3000';
         this.carregando = false;
         console.error('Erro:', err);
-      }
+      },    
+
     });
   }
 
